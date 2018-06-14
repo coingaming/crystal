@@ -1,18 +1,21 @@
 defmodule Crystal do
-  @moduledoc """
-  Documentation for Crystal.
-  """
 
   @doc """
-  Hello world.
 
-  ## Examples
+  Checks types in given module.
 
-      iex> Crystal.hello
-      :world
+  ## Example
+
+  ```
+  iex> Crystal.type_check_module(Elixir.CrystalTest.Support.Factorial)
+  :ok
+  ```
 
   """
-  def hello do
-    :world
+
+  @spec type_check_module(atom) :: :ok | :nok
+  def type_check_module(module) when is_atom(module) do
+    :gradualizer.type_check_module(module)
   end
+
 end
