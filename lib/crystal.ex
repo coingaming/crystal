@@ -7,7 +7,10 @@ defmodule Crystal do
   ## Example
 
   ```
-  iex> Crystal.type_check_module(Elixir.CrystalTest.Support.Factorial)
+  iex> Crystal.type_check_module(Elixir.CrystalTest.Support.FactorialFail)
+  :nok
+
+  iex> Crystal.type_check_module(Elixir.CrystalTest.Support.FactorialPass)
   :ok
   ```
 

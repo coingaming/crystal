@@ -1,4 +1,4 @@
 %{
-  "gradualizer": {:git, "https://github.com/coingaming/Gradualizer.git", "22f40ee2c944d198baf4bc9f59719d0e9bd74c45", [branch: "application"]},
+  "gradualizer": {:git, "https://github.com/coingaming/Gradualizer.git", "739bf85a239cbc8cff0a41560a9be2245699850f", [branch: "application"]},
   "mix_erlang_tasks": {:hex, :mix_erlang_tasks, "0.1.0", "36819fec60b80689eb1380938675af215565a89320a9e29c72c70d97512e4649", [:mix], [], "hexpm"},
 }
