@@ -4,6 +4,7 @@ defmodule Crystal.Application do
   @moduledoc false
 
   use Application
+  require Logger
 
   def start(_type, _args) do
     # List all child processes to be supervised
@@ -17,4 +18,11 @@ defmodule Crystal.Application do
     opts = [strategy: :one_for_one, name: Crystal.Supervisor]
     Supervisor.start_link(children, opts)
   end
+
+  def stop(reason) do
+    "#{__MODULE__} application is stopped, trying to shutdown erlang node ..."
+    |> Logger.error([reason: reason])
+    :init.stop()
+  end
+
 end
