@@ -10,7 +10,7 @@ by adding `crystal` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:crystal, "~> X.X.X"}
+    {:crystal, "~> X.X.X", only: [:dev, :test], runtime: false}
   ]
 end
 ```
