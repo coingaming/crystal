@@ -12,6 +12,12 @@ defmodule Crystal do
 
   iex> Crystal.type_check_module(Elixir.CrystalTest.Support.FactorialPass)
   :ok
+
+  iex> Crystal.type_check_module(CrystalTest.Support.CrossModuleFail)
+  :nok
+
+  iex> Crystal.type_check_module(CrystalTest.Support.CrossModulePass)
+  :ok
   ```
 
   """

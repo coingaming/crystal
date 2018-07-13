@@ -1,6 +1,6 @@
 defmodule CrystalTest.Support.FactorialPass do
 
-  @spec factorial(non_neg_integer()) :: pos_integer()
+  @spec factorial(integer()) :: integer()
 
   def factorial(0), do: 1
   def factorial(n) do
