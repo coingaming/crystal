@@ -40,37 +40,38 @@ defmodule Mix.Tasks.Crystal do
   #
 
   defp check_modules(modules = [_ | _]) do
-    modules
-    |> Stream.map(fn(module_name) ->
-      module_name
-      |> Crystal.type_check_module
-      |> Uelli.try_catch
-      |> case do
-        res = :ok -> {module_name, res}
-        res = :nok -> {module_name, res}
-        {:error, _} -> {module_name, :error}
-      end
-    end)
-    |> Enum.filter(fn
-      {_, :ok} -> false
-      {_, :nok} -> true
-      {_, :error} -> true
-    end)
+
+    gradualizer_results =
+      modules
+      |> Enum.map(fn(module_name) ->
+        module_name
+        |> Crystal.type_check_module
+        |> Uelli.try_catch
+        |> case do
+          res = :ok -> {module_name, res}
+          res = :nok -> {module_name, res}
+          {:error, _} -> {module_name, :error}
+        end
+      end)
+      |> Enum.group_by(fn({_, status}) -> status end)
+
+    gradualizer_results
+    |> Map.keys
     |> case do
-      [] ->
+      [:ok] ->
         :ok
-      bad_modules = [_ | _] ->
+      [_ | _] ->
         error_message =
-          bad_modules
-          |> Enum.group_by(fn({_, status}) -> status end)
+          gradualizer_results
           |> Stream.map(fn({status, lst = [_ | _]}) ->
             prefix =
               status
               |> case do
-                :nok -> "Gradualizer founded errors in modules: "
-                :error -> "Gradualizer failed with exception in modules: "
+                :ok -> "Gradualizer succeeded in modules "
+                :nok -> "Gradualizer founded errors in modules "
+                :error -> "Gradualizer failed with exception in modules "
               end
-            "#{prefix}#{lst |> Stream.map(fn({module_name, _}) -> module_name end) |> Enum.join(", ")}"
+            "#{prefix}(#{length lst}): #{lst |> Stream.map(fn({module_name, _}) -> module_name end) |> Enum.join(", ")}"
           end)
           |> Enum.join("\n\n")
 
