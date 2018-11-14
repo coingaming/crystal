@@ -68,7 +68,7 @@ defmodule Crystal.MixProject do
       {:gradualizer, github: "josefs/Gradualizer"},
       {:uelli, github: "coingaming/uelli"},
       # development tools
-      {:excoveralls, "~> 0.8", only: [:dev, :test], runtime: false},
+      {:excoveralls, "~> 0.9", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 0.5",    only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.18",     only: [:dev, :test], runtime: false},
       {:credo, "~> 0.8",       only: [:dev, :test], runtime: false},
