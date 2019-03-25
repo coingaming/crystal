@@ -31,7 +31,7 @@ defmodule Mix.Tasks.Crystal do
     |> Crystal.type_check_module
     |> case do
       :ok -> :ok
-      :nok -> raise("Gradualizer founded errors in modules: #{module_name}")
+      :nok -> raise("Gradualizer found errors in modules: #{module_name}")
     end
   end
 
@@ -68,7 +68,7 @@ defmodule Mix.Tasks.Crystal do
               status
               |> case do
                 :ok -> "Gradualizer succeeded in modules "
-                :nok -> "Gradualizer founded errors in modules "
+                :nok -> "Gradualizer found errors in modules "
                 :error -> "Gradualizer failed with exception in modules "
               end
             "#{prefix}(#{length lst}): #{lst |> Stream.map(fn({module_name, _}) -> module_name end) |> Enum.join(", ")}"
