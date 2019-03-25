@@ -18,6 +18,12 @@ defmodule Crystal do
 
   iex> Crystal.type_check_module(CrystalTest.Support.CrossModulePass)
   :ok
+
+  iex> Crystal.type_check_module(CrystalTest.Support.StructFail)
+  :nok
+
+  iex> Crystal.type_check_module(CrystalTest.Support.StructPass)
+  :ok
   ```
 
   """
